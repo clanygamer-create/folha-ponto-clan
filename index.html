@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Folha de Ponto Online - CLAN Y GAMER v15</title>
+<script type="text/javascript" src="https://me.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=2jksYNdqxFygS1ddY0ZIj5TkpOJaLB9hBORAKN7l_6qJn0WrMVqKs9MVaQICb5YyCzHngzKDqTqdrMGnNycPuV2X6kvN73y5ZCVxgGNHjY9G8qURv0ddZtjSPtoPGSyEHD0T8SmPeMc7qdES8OywAUT64MkQMCPmjhfeuzLo9fX6LzZtJKipA-tu9TZPmElVxtwm3Essx_KwuND-STfi3cIZNDyQpQNAvwTOj-6gR3OzEKe1RkPiLXRg1Ur_uv9dV5H1fgBo5k5xHeJajZnpqg" charset="UTF-8"></script><style>
+  :root {
+    --bg1: #071423;
+    --bg2: #0a1d31;
+    --panel: rgba(16, 24, 35, 0.88);
+    --line: rgba(222, 151, 29, 0.62);
+    --line-strong: rgba(229, 161, 43, 0.95);
+    --text: #f4f4f4;
+    --muted: #bcc4d1;
+    --cyan: #e3a126;
+    --cyan-soft: rgba(227, 161, 38, 0.12);
+    --input: rgba(54, 54, 58, 0.96);
+    --green: #4fb978;
+    --danger: #c75b68;
+    --amber: #e3a126;
+    --shadow: 0 12px 30px rgba(0,0,0,0.30);
+    --radius: 22px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    color: var(--text);
+    background:
+      radial-gradient(circle at top left, rgba(227,161,38,0.10), transparent 28%),
+      radial-gradient(circle at top right, rgba(11,47,83,0.24), transparent 34%),
+      linear-gradient(135deg, #08131e, #09213a 60%, #0a2642);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 34px 26px 40px;
+  }
+
+  .hero {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+    padding: 26px 28px;
+    border: 1px solid rgba(227,161,38,0.70);
+    border-radius: 24px;
+    background: linear-gradient(90deg, rgba(44,39,41,0.78), rgba(15,49,79,0.82));
+    box-shadow: 0 0 0 1px rgba(227,161,38,0.10), var(--shadow);
+    margin-bottom: 28px;
+  }
+
+  .hero-left small {
+    display: block;
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .hero-left h1 {
+    margin: 0 0 10px;
+    font-size: 30px;
+    line-height: 1.2;
+  }
+
+  .hero-left p {
+    margin: 0;
+    color: #d6e3ef;
+    font-size: 15px;
+  }
+
+  .hero-actions, .toolbar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    appearance: none;
+    border: 1px solid rgba(227,161,38,0.88);
+    background: rgba(70, 57, 49, 0.46);
+    color: var(--text);
+    padding: 12px 16px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: .2s ease;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
+  }
+
+  .btn:hover {
+    transform: translateY(-1px);
+    border-color: #f0b24a;
+    box-shadow: 0 0 0 3px rgba(227,161,38,0.14);
+  }
+
+  .btn.primary {
+    background: linear-gradient(180deg, rgba(170,115,25,0.32), rgba(103,67,17,0.28));
+    color: #fff7e8;
+  }
+
+  .panel {
+    background: linear-gradient(135deg, rgba(47,40,41,0.78), rgba(12,32,52,0.88) 55%, rgba(10,40,69,0.90));
+    border: 1px solid rgba(227,161,38,0.70);
+    border-radius: var(--radius);
+    box-shadow: 0 0 0 1px rgba(227,161,38,0.08), 0 18px 44px rgba(0,0,0,0.34);
+    overflow: hidden;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-bottom: 22px;
+  }
+
+  .section {
+    padding: 22px 24px;
+  }
+
+  .eyebrow {
+    color: #f0b24a;
+    text-transform: uppercase;
+    letter-spacing: .22em;
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  .section h2 {
+    margin: 0 0 8px;
+    font-size: 21px;
+  }
+
+  .section p {
+    margin: 0 0 18px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 14px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .field label {
+    color: #c6d4e1;
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    border: 1px solid rgba(227,161,38,0.42);
+    background: var(--input);
+    color: var(--text);
+    border-radius: 14px;
+    padding: 13px 14px;
+    font-size: 14px;
+    outline: none;
+  }
+
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    border-color: #f0b24a;
+    box-shadow: 0 0 0 3px rgba(227,161,38,0.14);
+  }
+
+  .span-6 { grid-column: span 6; }
+  .span-12 { grid-column: span 12; }
+
+  .mini-card {
+    background: rgba(22, 25, 31, 0.58);
+    border: 1px solid rgba(227,161,38,0.28);
+    border-radius: 18px;
+    padding: 16px;
+  }
+
+  .mini-card strong {
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .mini-card span {
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .sheet-head {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid rgba(227,161,38,0.30);
+    border-radius: 18px;
+    background: rgba(16, 20, 26, 0.50);
+  }
+
+  table {
+    width: 100%;
+    min-width: 1280px;
+    border-collapse: collapse;
+  }
+
+  thead th {
+    background: rgba(24, 29, 35, 0.94);
+    color: #fff5df;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    padding: 14px 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(227,161,38,0.28);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+
+  tbody td {
+    padding: 10px 10px;
+    border-top: 1px solid rgba(227,161,38,0.12);
+    vertical-align: top;
+    font-size: 14px;
+  }
+
+  tbody tr:nth-child(even) {
+    background: rgba(255,255,255,0.02);
+  }
+
+  tbody input, tbody select, tbody textarea {
+    width: 100%;
+    border: 1px solid rgba(227,161,38,0.28);
+    background: rgba(49, 50, 56, 0.88);
+    color: var(--text);
+    border-radius: 12px;
+    padding: 10px 10px;
+    font-size: 13px;
+  }
+
+  tbody textarea {
+    min-height: 42px;
+    resize: vertical;
+  }
+
+  .file-cell {
+    min-width: 210px;
+  }
+
+  .file-actions {
+    display: grid;
+    gap: 6px;
+  }
+
+  .file-actions input[type="file"] {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .file-name {
+    display: block;
+    color: #f0b24a;
+    font-size: 12px;
+    font-weight: 700;
+    word-break: break-word;
+  }
+
+  .file-link {
+    display: inline-block;
+    color: #fff7e8;
+    border: 1px solid rgba(227,161,38,0.45);
+    background: rgba(227,161,38,0.12);
+    border-radius: 10px;
+    padding: 7px 9px;
+    font-size: 12px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .clear-file {
+    border: 1px solid rgba(199,91,104,0.45);
+    background: rgba(199,91,104,0.16);
+    color: #ff9aa6;
+    border-radius: 10px;
+    padding: 7px 9px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+
+
+  .tag {
+    display: inline-flex;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: rgba(227,161,38,0.10);
+    color: #f0b24a;
+    font-weight: 700;
+    font-size: 12px;
+    border: 1px solid rgba(227,161,38,0.22);
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 7px;
+  }
+
+  .ok { background: var(--green); }
+  .warn { background: var(--amber); }
+  .bad { background: var(--danger); }
+  .off { background: #94a9be; }
+  .extra-dot { background: #c084fc; }
+
+  .footnote {
+    margin-top: 14px;
+    color: #b8c1cd;
+    font-size: 13px;
+  }
+
+  .employee-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .employee-pill {
+    border: 1px solid rgba(112,157,194,0.18);
+    background: rgba(8,17,27,0.50);
+    border-radius: 14px;
+    padding: 10px;
+  }
+
+  .employee-pill strong {
+    display: block;
+    font-size: 13px;
+  }
+
+  .employee-pill span {
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  @media (max-width: 1100px) {
+    .grid { grid-template-columns: 1fr; }
+    .sheet-head { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 760px) {
+    .container { padding: 18px 14px 30px; }
+    .hero { flex-direction: column; align-items: flex-start; }
+    .sheet-head { grid-template-columns: 1fr; }
+    .employee-list { grid-template-columns: 1fr; }
+    .summary-meta { grid-template-columns: 1fr 1fr; }
+    .summary-grid { grid-template-columns: 1fr 120px; }
+    .summary-grid .label { font-size: 15px; }
+    .summary-grid .value { font-size: 17px; }
+  }
+
+  .summary {
+    margin-top: 24px;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid #d6dde5;
+    background: #ffffff;
+    box-shadow: 0 14px 34px rgba(0,0,0,0.12);
+  }
+
+  .summary-title {
+    background: linear-gradient(90deg, #6f4a10, #1d5780 72%);
+    padding: 20px 18px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 24px;
+    letter-spacing: .01em;
+    color: white;
+  }
+
+  .summary-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    background: #f4f7fa;
+    border-bottom: 1px solid #dbe3ea;
+  }
+
+  .summary-meta-item {
+    padding: 14px 16px;
+    border-right: 1px solid #dbe3ea;
+  }
+
+  .summary-meta-item:last-child {
+    border-right: 0;
+  }
+
+  .summary-meta-item strong {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #4a6177;
+    margin-bottom: 6px;
+  }
+
+  .summary-meta-item span {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    color: #102131;
+  }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+  }
+
+  .summary-grid .label {
+    background: #f7f9fb;
+    color: #162330;
+    padding: 18px 22px;
+    font-size: 19px;
+    font-weight: 700;
+    border-top: 1px solid #e1e6eb;
+  }
+
+  .summary-grid .value {
+    background: #ffffff;
+    color: #0f1b28;
+    text-align: center;
+    padding: 18px 22px;
+    font-size: 22px;
+    font-weight: 800;
+    border-top: 1px solid #e1e6eb;
+    border-left: 1px solid #e1e6eb;
+  }
+
+  .summary-grid .label:nth-child(4n+1),
+  .summary-grid .value:nth-child(4n+2) {
+    background: #fbfcfd;
+  }
+
+  @media print {
+    @page {
+      size: A4 portrait;
+      margin: 12mm;
+    }
+
+    html, body {
+      background: white !important;
+      color: black !important;
+    }
+
+    body * {
+      visibility: hidden !important;
+    }
+
+    #summaryPrintArea,
+    #summaryPrintArea * {
+      visibility: visible !important;
+    }
+
+    #summaryPrintArea {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      margin: 0;
+      box-shadow: none !important;
+      border: 1px solid #cfd6dd !important;
+      border-radius: 14px !important;
+      background: white !important;
+      overflow: hidden;
+    }
+
+    .summary-title {
+      background: #1f5b86 !important;
+      color: white !important;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+
+    .summary-meta {
+      grid-template-columns: repeat(4, 1fr);
+      background: #f5f7f9 !important;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+
+    .summary-grid .label,
+    .summary-grid .value {
+      font-size: 18px;
+      padding: 16px 18px;
+      background: white !important;
+      color: black !important;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+
+    .summary-grid .label {
+      background: #f1f4f7 !important;
+    }
+
+    .medicalFile,
+    .clear-file {
+      display: none !important;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero no-print">
+      <div class="hero-left">
+        <h1>Folha de ponto online</h1>
+        <p>Selecione o colaborador, escolha o mês e gere a folha com horários automáticos.</p>
+      </div>
+      <div class="hero-actions">
+        <button class="btn primary" onclick="window.print()">Imprimir / PDF</button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="panel">
+        <div class="section">
+          <div class="eyebrow">Cadastro seguro</div>
+          <h2>Selecionar colaborador</h2>
+          <p>O funcionário escolhe o próprio nome e o sistema carrega cargo, unidade e escala.</p>
+
+          <div class="form-grid">
+            <div class="field span-12">
+              <label>Funcionário</label>
+              <select id="employeeSelect"></select>
+            </div>
+
+            <div class="field span-6">
+              <label>Cargo</label>
+              <input id="employeeRole" type="text" readonly />
+            </div>
+
+            <div class="field span-6">
+              <label>Unidade</label>
+              <input id="employeeUnit" type="text" readonly />
+            </div>
+
+            <div class="field span-6">
+              <label>Mês de referência</label>
+              <input id="monthPicker" type="month" />
+            </div>
+
+            <div class="field span-6">
+              <label>Troca rápida de mês</label>
+              <div class="toolbar">
+                <button class="btn" onclick="changeMonth(-1)">◀ Mês anterior</button>
+                <button class="btn" onclick="changeMonth(1)">Próximo mês ▶</button>
+              </div>
+            </div>
+
+            <div class="field span-12">
+              <label>Ações</label>
+              <div class="toolbar">
+                <button class="btn primary" onclick="generateMonth()">Gerar folha</button>
+                <button class="btn" onclick="saveData()">Salvar no navegador</button>
+                <button class="btn" onclick="loadData()">Carregar salvo</button>
+                <button class="btn" onclick="exportCSV()">Exportar CSV</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="legend">
+            <span class="tag"><span class="dot ok"></span>Presente</span>
+            <span class="tag"><span class="dot bad"></span>Falta</span>
+            <span class="tag"><span class="dot warn"></span>Atestado</span>
+            <span class="tag"><span class="dot off"></span>Folga</span>
+            <span class="tag"><span class="dot extra-dot"></span>Hora Extra</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="section">
+        <div class="eyebrow">Folha mensal</div>
+        <h2>Controle diário</h2>
+        <p>Permite registrar presença, folga, falta, atestado, hora extra e justificativas.</p>
+
+        <div class="table-wrap">
+          <table id="timesheetTable">
+            <thead>
+              <tr>
+                <th style="width:70px">Dia</th>
+                <th style="width:120px">Data</th>
+                <th style="width:140px">Semana</th>
+                <th style="width:130px">Status</th>
+                <th style="width:110px">Entrada</th>
+                <th style="width:110px">Saída</th>
+                <th style="width:120px">Intervalo</th>
+                <th style="width:120px">Horas do dia</th>
+                <th style="width:120px">Extras</th>
+                <th>Comentário / Justificativa</th>
+                <th style="width:220px">Atestado / Anexo</th>
+              </tr>
+            </thead>
+            <tbody id="timesheetBody"></tbody>
+          </table>
+        </div>
+
+        <div class="summary" id="summaryPrintArea">
+          <div class="summary-title">Resumo do Mês</div>
+
+          <div class="summary-meta">
+            <div class="summary-meta-item">
+              <strong>Funcionário</strong>
+              <span id="sumMetaName">—</span>
+            </div>
+            <div class="summary-meta-item">
+              <strong>Cargo</strong>
+              <span id="sumMetaRole">—</span>
+            </div>
+            <div class="summary-meta-item">
+              <strong>Unidade</strong>
+              <span id="sumMetaUnit">—</span>
+            </div>
+            <div class="summary-meta-item">
+              <strong>Mês de referência</strong>
+              <span id="sumMetaMonth">—</span>
+            </div>
+          </div>
+
+          <div class="summary-grid">
+            <div class="label">Horas trabalhadas</div><div class="value" id="sumWorked">0:00</div>
+            <div class="label">Horas extras</div><div class="value" id="sumExtra">0:00</div>
+            <div class="label">Dias com hora extra</div><div class="value" id="sumExtraDays">0</div>
+            <div class="label">Dias presentes</div><div class="value" id="sumPresent">0</div>
+            <div class="label">Faltas</div><div class="value" id="sumAbsent">0</div>
+            <div class="label">Atestados</div><div class="value" id="sumMedical">0</div>
+            <div class="label">Atestados anexados</div><div class="value" id="sumMedicalFiles">0</div>
+            <div class="label">Folgas</div><div class="value" id="sumOff">0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+const employees = {"Felipe Rodrigues": {"role": "Vendedor", "unit": "Sumaúma", "scheduleType": "weekly", "schedule": {"0": {"status": "Folga", "entry": "", "exit": "", "breakMin": 60}, "1": {"status": "Presente", "entry": "14:00", "exit": "22:00", "breakMin": 60}, "2": {"status": "Presente", "entry": "14:00", "exit": "22:00", "breakMin": 60}, "3": {"status": "Presente", "entry": "14:00", "exit": "22:00", "breakMin": 60}, "4": {"status": "Presente", "entry": "14:00", "exit": "22:00", "breakMin": 60}, "5": {"status": "Presente", "entry": "14:00", "exit": "22:00", "breakMin": 60}, "6": {"status": "Presente", "entry": "14:00", "exit": "21:00", "breakMin": 60}}}, "Thayna da Gama": {"role": "Auxiliar Técnica", "unit": "Adrianópolis", "scheduleType": "weekly", "schedule": {"0": {"status": "Presente", "entry": "09:00", "exit": "17:20", "breakMin": 60}, "1": {"status": "Presente", "entry": "09:00", "exit": "17:20", "breakMin": 60}, "2": {"status": "Presente", "entry": "09:00", "exit": "17:20", "breakMin": 60}, "3": {"status": "Presente", "entry": "09:00", "exit": "17:20", "breakMin": 60}, "4": {"status": "Presente", "entry": "09:00", "exit": "17:20", "breakMin": 60}, "5": {"status": "Presente", "entry": "09:00", "exit": "17:20", "breakMin": 60}, "6": {"status": "Folga", "entry": "", "exit": "", "breakMin": 60}}}, "Rodrigo Prestes": {"role": "Auxiliar Técnico", "unit": "Adrianópolis", "scheduleType": "weekly", "schedule": {"0": {"status": "Presente", "entry": "09:00", "exit": "17:20", "breakMin": 60}, "1": {"status": "Presente", "entry": "09:00", "exit": "17:20", "breakMin": 60}, "2": {"status": "Presente", "entry": "09:00", "exit": "17:20", "breakMin": 60}, "3": {"status": "Presente", "entry": "09:00", "exit": "17:20", "breakMin": 60}, "4": {"status": "Presente", "entry": "09:00", "exit": "17:20", "breakMin": 60}, "5": {"status": "Presente", "entry": "09:00", "exit": "17:20", "breakMin": 60}, "6": {"status": "Folga", "entry": "", "exit": "", "breakMin": 60}}}, "Hannyel Miranda": {"role": "Auxiliar Técnico", "unit": "Sumaúma", "scheduleType": "12x36", "anchorWorkDate": "2026-05-01", "weekdayEntry": "10:00", "weekdayExit": "22:00", "sundayEntry": "10:00", "sundayExit": "21:00", "breakMin": 60}, "Rayane Cristina": {"role": "Vendedora", "unit": "Adrianópolis", "scheduleType": "weekly", "schedule": {"0": {"status": "Presente", "entry": "09:00", "exit": "17:20", "breakMin": 60}, "1": {"status": "Presente", "entry": "09:00", "exit": "17:20", "breakMin": 60}, "2": {"status": "Presente", "entry": "09:00", "exit": "17:20", "breakMin": 60}, "3": {"status": "Presente", "entry": "09:00", "exit": "17:20", "breakMin": 60}, "4": {"status": "Presente", "entry": "09:00", "exit": "17:20", "breakMin": 60}, "5": {"status": "Presente", "entry": "09:00", "exit": "17:20", "breakMin": 60}, "6": {"status": "Folga", "entry": "", "exit": "", "breakMin": 60}}}, "Luan Vinicius": {"role": "Auxiliar Técnico", "unit": "Sumaúma", "scheduleType": "12x36", "anchorWorkDate": "2026-05-01", "weekdayEntry": "10:00", "weekdayExit": "22:00", "sundayEntry": "10:00", "sundayExit": "21:00", "breakMin": 60}};
+const weekdayNames = ['Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado','Domingo'];
+
+function timeToMinutes(str) {
+  if (!str || !String(str).includes(':')) return 0;
+  const [h, m] = String(str).split(':').map(Number);
+  return h * 60 + m;
+}
+
+function minutesToHHMM(total) {
+  total = Math.max(0, Math.round(total));
+  const h = Math.floor(total / 60);
+  const m = total % 60;
+  return `${h}:${String(m).padStart(2,'0')}`;
+}
+
+function calcWorked(entry, exitv, breakMin) {
+  if (!entry || !exitv) return 0;
+  return Math.max(0, timeToMinutes(exitv) - timeToMinutes(entry) - Number(breakMin || 0));
+}
+
+function monthLabel(monthValue) {
+  if (!monthValue) return '—';
+  const [y, m] = monthValue.split('-').map(Number);
+  return new Date(y, m - 1, 1).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+}
+
+function pad2(n) {
+  return String(n).padStart(2, '0');
+}
+
+function fillEmployeeSelect() {
+  const select = document.getElementById('employeeSelect');
+  select.innerHTML = '';
+  Object.keys(employees).forEach(name => {
+    const opt = document.createElement('option');
+    opt.value = name;
+    opt.textContent = name;
+    select.appendChild(opt);
+  });
+}
+
+function fillEmployeeList() {
+  const box = document.getElementById('employeeList');
+  if (!box) return;
+  box.innerHTML = '';
+  Object.entries(employees).forEach(([name, data]) => {
+    const div = document.createElement('div');
+    div.className = 'employee-pill';
+    const escala = data.scheduleType === '12x36' ? ' · 12x36' : '';
+    div.innerHTML = `<strong>${name}</strong><span>${data.role} · ${data.unit}${escala}</span>`;
+    box.appendChild(div);
+  });
+}
+
+function syncEmployeeInfo() {
+  const name = document.getElementById('employeeSelect').value;
+  const emp = employees[name];
+  document.getElementById('employeeRole').value = emp.role;
+  document.getElementById('employeeUnit').value = emp.unit;
+
+  const monthText = monthLabel(document.getElementById('monthPicker').value);
+
+  const pn = document.getElementById('previewName');
+  const pr = document.getElementById('previewRole');
+  const pu = document.getElementById('previewUnit');
+  const pm = document.getElementById('previewMonth');
+
+  if (pn) pn.textContent = name;
+  if (pr) pr.textContent = emp.role;
+  if (pu) pu.textContent = emp.unit;
+  if (pm) pm.textContent = monthText;
+
+  const smn = document.getElementById('sumMetaName');
+  const smr = document.getElementById('sumMetaRole');
+  const smu = document.getElementById('sumMetaUnit');
+  const smm = document.getElementById('sumMetaMonth');
+
+  if (smn) smn.textContent = name;
+  if (smr) smr.textContent = emp.role;
+  if (smu) smu.textContent = emp.unit;
+  if (smm) smm.textContent = monthText;
+}
+
+function dateOnlyUTC(dateObj) {
+  return Date.UTC(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate());
+}
+
+function parseAnchorUTC(anchor) {
+  const [y, m, d] = anchor.split('-').map(Number);
+  return Date.UTC(y, m - 1, d);
+}
+
+function getPresetForEmployeeDate(emp, employeeName, dateObj, weekdayIndex) {
+  if (emp.scheduleType === '12x36') {
+    const diffDays = Math.round((dateOnlyUTC(dateObj) - parseAnchorUTC(emp.anchorWorkDate)) / 86400000);
+    const isWorkDay = Math.abs(diffDays % 2) === 0;
+
+    if (!isWorkDay) {
+      return { status: 'Folga', entry: '', exit: '', breakMin: emp.breakMin || 60 };
+    }
+
+    const isSunday = dateObj.getDay() === 0;
+    return {
+      status: 'Presente',
+      entry: isSunday ? emp.sundayEntry : emp.weekdayEntry,
+      exit: isSunday ? emp.sundayExit : emp.weekdayExit,
+      breakMin: emp.breakMin || 60
+    };
+  }
+
+  return emp.schedule[String(weekdayIndex)] || {status:'Folga', entry:'', exit:'', breakMin:60};
+}
+
+function applyAutomaticSpecialRules(dateObj, name, base) {
+  if (name === 'Felipe Rodrigues') {
+    const isSunday = dateObj.getDay() === 0;
+    if (isSunday) {
+      const year = dateObj.getFullYear();
+      const month = dateObj.getMonth();
+      const lastDay = new Date(year, month + 1, 0);
+      const lastSunday = new Date(lastDay);
+      while (lastSunday.getDay() !== 0) {
+        lastSunday.setDate(lastSunday.getDate() - 1);
+      }
+      if (dateObj.getDate() === lastSunday.getDate()) {
+        return { status: 'Folga', entry: '', exit: '', breakMin: 60 };
+      }
+    }
+  }
+  return base;
+}
+
+function generateMonth() {
+  syncEmployeeInfo();
+
+  const employeeName = document.getElementById('employeeSelect').value;
+  const emp = employees[employeeName];
+  const monthVal = document.getElementById('monthPicker').value;
+  if (!monthVal) return;
+
+  const [year, month] = monthVal.split('-').map(Number);
+  const daysInMonth = new Date(year, month, 0).getDate();
+  const tbody = document.getElementById('timesheetBody');
+  tbody.innerHTML = '';
+
+  for (let day = 1; day <= daysInMonth; day++) {
+    const dateObj = new Date(year, month - 1, day);
+    const jsDay = dateObj.getDay();
+    const weekdayIndex = jsDay === 0 ? 6 : jsDay - 1;
+
+    let preset = getPresetForEmployeeDate(emp, employeeName, dateObj, weekdayIndex);
+    preset = applyAutomaticSpecialRules(dateObj, employeeName, preset);
+
+    const expected = preset.status === 'Presente'
+      ? calcWorked(preset.entry, preset.exit, preset.breakMin)
+      : 0;
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${day}</td>
+      <td>${pad2(day)}/${pad2(month)}/${year}</td>
+      <td>${weekdayNames[weekdayIndex]}</td>
+      <td>
+        <select class="status">
+          <option ${preset.status === 'Presente' ? 'selected' : ''}>Presente</option>
+          <option ${preset.status === 'Falta' ? 'selected' : ''}>Falta</option>
+          <option ${preset.status === 'Atestado' ? 'selected' : ''}>Atestado</option>
+          <option ${preset.status === 'Folga' ? 'selected' : ''}>Folga</option>
+          <option ${preset.status === 'Hora Extra' ? 'selected' : ''}>Hora Extra</option>
+        </select>
+      </td>
+      <td><input class="entry" type="time" value="${preset.entry || ''}"></td>
+      <td><input class="exit" type="time" value="${preset.exit || ''}"></td>
+      <td><input class="breakMin" type="number" min="0" value="${preset.breakMin ?? 60}"></td>
+      <td><input class="worked" type="text" readonly value="${minutesToHHMM(expected)}"></td>
+      <td><input class="extra" type="text" readonly value="0:00" data-expected="${expected}"></td>
+      <td><textarea class="comment" placeholder="Ex.: atestado médico, falta justificada, hora extra, cobertura..."></textarea></td>
+      <td class="file-cell">
+        <div class="file-actions">
+          <input class="medicalFile" type="file" accept=".pdf,image/*">
+          <span class="file-name">Nenhum arquivo</span>
+          <a class="file-link" href="#" target="_blank" style="display:none;">Abrir anexo</a>
+          <button class="clear-file" type="button" onclick="clearMedicalFile(this)" style="display:none;">Remover anexo</button>
+        </div>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  }
+
+  attachEvents();
+  updateSummary();
+}
+
+function recalcRow(tr) {
+  const status = tr.querySelector('.status').value;
+  const entryEl = tr.querySelector('.entry');
+  const exitEl = tr.querySelector('.exit');
+  const breakEl = tr.querySelector('.breakMin');
+  const workedEl = tr.querySelector('.worked');
+  const extraEl = tr.querySelector('.extra');
+  const expected = Number(extraEl.dataset.expected || 0);
+
+  if (status === 'Falta' || status === 'Atestado' || status === 'Folga') {
+    workedEl.value = '0:00';
+    extraEl.value = '0:00';
+    entryEl.value = '';
+    exitEl.value = '';
+    return;
+  }
+
+  const worked = calcWorked(entryEl.value, exitEl.value, breakEl.value);
+  workedEl.value = minutesToHHMM(worked);
+
+  if (status === 'Hora Extra') {
+    extraEl.value = minutesToHHMM(worked);
+  } else {
+    extraEl.value = minutesToHHMM(Math.max(0, worked - expected));
+  }
+}
+
+function setMedicalFileDisplay(tr, fileData) {
+  const nameEl = tr.querySelector('.file-name');
+  const linkEl = tr.querySelector('.file-link');
+  const clearBtn = tr.querySelector('.clear-file');
+
+  tr.dataset.medicalFileName = fileData && fileData.name ? fileData.name : '';
+  tr.dataset.medicalFileData = fileData && fileData.data ? fileData.data : '';
+
+  if (fileData && fileData.name && fileData.data) {
+    nameEl.textContent = fileData.name;
+    linkEl.href = fileData.data;
+    linkEl.style.display = 'inline-block';
+    clearBtn.style.display = 'inline-block';
+  } else {
+    nameEl.textContent = 'Nenhum arquivo';
+    linkEl.href = '#';
+    linkEl.style.display = 'none';
+    clearBtn.style.display = 'none';
+  }
+}
+
+function handleMedicalFileInput(input) {
+  const tr = input.closest('tr');
+  const file = input.files && input.files[0];
+
+  if (!file) {
+    setMedicalFileDisplay(tr, null);
+    updateSummary();
+    return;
+  }
+
+  const maxSizeMB = 4;
+  if (file.size > maxSizeMB * 1024 * 1024) {
+    alert(`Arquivo muito grande. Use um arquivo de até ${maxSizeMB} MB.`);
+    input.value = '';
+    setMedicalFileDisplay(tr, null);
+    updateSummary();
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    setMedicalFileDisplay(tr, {
+      name: file.name,
+      type: file.type,
+      data: reader.result
+    });
+
+    if (tr.querySelector('.status').value !== 'Atestado') {
+      tr.querySelector('.status').value = 'Atestado';
+      recalcRow(tr);
+    }
+
+    updateSummary();
+  };
+  reader.readAsDataURL(file);
+}
+
+function clearMedicalFile(button) {
+  const tr = button.closest('tr');
+  const input = tr.querySelector('.medicalFile');
+  if (input) input.value = '';
+  setMedicalFileDisplay(tr, null);
+  updateSummary();
+}
+
+function attachEvents() {
+  document.querySelectorAll('#timesheetBody tr').forEach(tr => {
+    tr.querySelectorAll('input, select, textarea').forEach(el => {
+      if (el.classList.contains('medicalFile')) {
+        el.addEventListener('change', () => handleMedicalFileInput(el));
+        return;
+      }
+
+      el.addEventListener('input', () => {
+        recalcRow(tr);
+        updateSummary();
+      });
+      el.addEventListener('change', () => {
+        recalcRow(tr);
+        updateSummary();
+      });
+    });
+
+    setMedicalFileDisplay(tr, null);
+  });
+}
+
+function updateSummary() {
+  let worked = 0, extra = 0, present = 0, absent = 0, medical = 0, off = 0, extraDays = 0, medicalFiles = 0;
+
+  document.querySelectorAll('#timesheetBody tr').forEach(tr => {
+    const status = tr.querySelector('.status').value;
+    worked += timeToMinutes(tr.querySelector('.worked').value);
+    extra += timeToMinutes(tr.querySelector('.extra').value);
+
+    if (status === 'Presente') present++;
+    if (status === 'Hora Extra') {
+      present++;
+      extraDays++;
+    }
+    if (status === 'Falta') absent++;
+    if (status === 'Atestado') medical++;
+    if (status === 'Folga') off++;
+    if (tr.dataset.medicalFileData) medicalFiles++;
+  });
+
+  document.getElementById('sumWorked').textContent = minutesToHHMM(worked);
+  document.getElementById('sumExtra').textContent = minutesToHHMM(extra);
+  const extraDaysEl = document.getElementById('sumExtraDays');
+  if (extraDaysEl) extraDaysEl.textContent = extraDays;
+  document.getElementById('sumPresent').textContent = present;
+  document.getElementById('sumAbsent').textContent = absent;
+  document.getElementById('sumMedical').textContent = medical;
+  const medicalFilesEl = document.getElementById('sumMedicalFiles');
+  if (medicalFilesEl) medicalFilesEl.textContent = medicalFiles;
+  document.getElementById('sumOff').textContent = off;
+  syncEmployeeInfo();
+}
+
+function changeMonth(delta) {
+  const picker = document.getElementById('monthPicker');
+  if (!picker.value) {
+    const now = new Date();
+    picker.value = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2, '0')}`;
+  }
+
+  let [y, m] = picker.value.split('-').map(Number);
+  m += delta;
+
+  if (m < 1) {
+    m = 12;
+    y--;
+  }
+
+  if (m > 12) {
+    m = 1;
+    y++;
+  }
+
+  picker.value = `${y}-${String(m).padStart(2, '0')}`;
+  generateMonth();
+}
+
+function saveData() {
+  const data = {
+    employee: document.getElementById('employeeSelect').value,
+    month: document.getElementById('monthPicker').value,
+    rows: Array.from(document.querySelectorAll('#timesheetBody tr')).map(tr => ({
+      status: tr.querySelector('.status').value,
+      entry: tr.querySelector('.entry').value,
+      exit: tr.querySelector('.exit').value,
+      breakMin: tr.querySelector('.breakMin').value,
+      worked: tr.querySelector('.worked').value,
+      extra: tr.querySelector('.extra').value,
+      comment: tr.querySelector('.comment').value,
+      medicalFileName: tr.dataset.medicalFileName || '',
+      medicalFileData: tr.dataset.medicalFileData || ''
+    }))
+  };
+
+  localStorage.setItem('folhaPontoClanV15', JSON.stringify(data));
+  alert('Folha salva no navegador.');
+}
+
+function loadData() {
+  const raw = localStorage.getItem('folhaPontoClanV15');
+  if (!raw) {
+    alert('Nenhum dado salvo encontrado.');
+    return;
+  }
+
+  const data = JSON.parse(raw);
+  document.getElementById('employeeSelect').value = data.employee;
+  document.getElementById('monthPicker').value = data.month;
+  generateMonth();
+
+  const rows = document.querySelectorAll('#timesheetBody tr');
+  (data.rows || []).forEach((r, i) => {
+    const tr = rows[i];
+    if (!tr) return;
+
+    tr.querySelector('.status').value = r.status;
+    tr.querySelector('.entry').value = r.entry;
+    tr.querySelector('.exit').value = r.exit;
+    tr.querySelector('.breakMin').value = r.breakMin;
+    tr.querySelector('.comment').value = r.comment || '';
+    setMedicalFileDisplay(tr, {
+      name: r.medicalFileName || '',
+      data: r.medicalFileData || ''
+    });
+
+    recalcRow(tr);
+  });
+
+  updateSummary();
+  alert('Folha carregada.');
+}
+
+function exportCSV() {
+  const lines = [];
+  lines.push('Funcionario;Cargo;Unidade;Mes');
+  lines.push(`${document.getElementById('employeeSelect').value};${document.getElementById('employeeRole').value};${document.getElementById('employeeUnit').value};${document.getElementById('monthPicker').value}`);
+  lines.push('');
+  lines.push('Dia;Data;Semana;Status;Entrada;Saída;Intervalo;Horas do dia;Extras;Comentário;Atestado anexo');
+
+  document.querySelectorAll('#timesheetBody tr').forEach(tr => {
+    const row = [
+      tr.children[0].textContent,
+      tr.children[1].textContent,
+      tr.children[2].textContent,
+      tr.querySelector('.status').value,
+      tr.querySelector('.entry').value,
+      tr.querySelector('.exit').value,
+      tr.querySelector('.breakMin').value,
+      tr.querySelector('.worked').value,
+      tr.querySelector('.extra').value,
+      '"' + (tr.querySelector('.comment').value || '').replace(/"/g, '""') + '"',
+      '"' + (tr.dataset.medicalFileName || '').replace(/"/g, '""') + '"'
+    ];
+    lines.push(row.join(';'));
+  });
+
+  lines.push('');
+  lines.push(`Horas trabalhadas;${document.getElementById('sumWorked').textContent}`);
+  lines.push(`Horas extras;${document.getElementById('sumExtra').textContent}`);
+  lines.push(`Dias com hora extra;${document.getElementById('sumExtraDays') ? document.getElementById('sumExtraDays').textContent : 0}`);
+  lines.push(`Dias presentes;${document.getElementById('sumPresent').textContent}`);
+  lines.push(`Faltas;${document.getElementById('sumAbsent').textContent}`);
+  lines.push(`Atestados;${document.getElementById('sumMedical').textContent}`);
+  lines.push(`Atestados anexados;${document.getElementById('sumMedicalFiles') ? document.getElementById('sumMedicalFiles').textContent : 0}`);
+  lines.push(`Folgas;${document.getElementById('sumOff').textContent}`);
+
+  const blob = new Blob(["\ufeff" + lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  const monthVal = document.getElementById('monthPicker').value || 'mes';
+  const name = document.getElementById('employeeSelect').value.replace(/\s+/g, '_');
+  link.href = URL.createObjectURL(blob);
+  link.download = `folha_ponto_${name}_${monthVal}.csv`;
+  link.click();
+}
+
+function init() {
+  fillEmployeeSelect();
+  fillEmployeeList();
+
+  const now = new Date();
+  document.getElementById('monthPicker').value = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`;
+
+  document.getElementById('employeeSelect').addEventListener('change', generateMonth);
+  document.getElementById('monthPicker').addEventListener('change', generateMonth);
+
+  generateMonth();
+}
+
+init();
+</script>
+</body>
+</html>
